@@ -53,22 +53,22 @@ export default function Results() {
     <div className="bg-[#F8FAFC] min-h-screen text-gray-900 flex flex-col">
 
       {/* TEMP BUTTONS TO PREVIEW RESULTS */}
-      <div className="flex gap-3 p-4 bg-gray-100 border mb-5">
+      <div className="flex flex-col md:flex-row gap-3 p-4 bg-gray-100 border mb-5">
         <button 
           onClick={() => setStatus("no_tumor")} 
-          className="px-4 py-2 bg-green-600 text-white rounded"
+          className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded"
         >
           Show NO TUMOR
         </button>
         <button 
           onClick={() => setStatus("tumor")} 
-          className="px-4 py-2 bg-yellow-600 text-white rounded"
+          className="w-full sm:w-auto px-4 py-2 bg-yellow-600 text-white rounded"
         >
           Show TUMOR
         </button>
         <button 
           onClick={() => setStatus("failed")} 
-          className="px-4 py-2 bg-red-600 text-white rounded"
+          className="w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded"
         >
           Show FAILED
         </button>
@@ -119,7 +119,7 @@ export default function Results() {
       <main className="flex-grow container mx-auto px-6 py-8">
    {/* NO TUMOR SECTION - FINAL REFINED LAYOUT */}
 {status === "no_tumor" && (
-  <div className="max-w-7xl mx-auto px-12 xl:px-20 py-14 bg-[#f8fafc] min-h-screen font-['Rubik']">
+  <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-20 py-10 md:py-14 bg-[#f8fafc] min-h-screen font-['Rubik']">
     
     {/* Header */}
     <div className="mb-12">
@@ -131,7 +131,7 @@ export default function Results() {
     <div className="grid lg:grid-cols-12 gap-8 mb-8 items-stretch">
       
       {/* كارت المريض (شمال) - 4 أعمدة */}
-      <div className="lg:col-span-4 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-center h-full">
+      <div className="lg:col-span-4 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-center h-full w-full max-w-md lg:max-w-none mx-auto lg:mx-0">
         <h2 className="text-base font-semibold text-gray-800 mb-6">Patient Information</h2>
         <div className="space-y-4 text-sm text-gray-600">
           <div className="flex justify-between"><span>Name:</span><span className="font-medium text-gray-900">{resultData?.patient?.name}</span></div>
@@ -142,7 +142,7 @@ export default function Results() {
       </div>
 
       {/* كارت النتيجة/التشخيص (يمين) - 8 أعمدة */}
-      <div className="lg:col-span-8 bg-white p-10 rounded-xl border border-gray-200 shadow-sm relative text-center flex flex-col justify-center h-full">
+      <div className="lg:col-span-8 bg-white p-10 rounded-xl border border-gray-200 shadow-sm relative text-center flex flex-col justify-center h-full w-full max-w-2xl lg:max-w-none mx-auto lg:mx-0">
         <span className="absolute top-6 right-6 bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-medium">Scan Complete</span>
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
@@ -161,7 +161,7 @@ export default function Results() {
     <div className="grid lg:grid-cols-12 gap-8 items-stretch">
       
       {/* كارت النسبة والـ Metrics (شمال) - 4 أعمدة */}
-      <div className="lg:col-span-4 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between min-h-[450px]">
+      <div className="lg:col-span-4 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between min-h-[450px] w-full max-w-md lg:max-w-none mx-auto lg:mx-0">
         <h2 className="text-lg font-semibold text-gray-900 mb-6">Detection Probability</h2>
         <div className="text-center mb-8">
           <p className="text-6xl font-bold text-green-600 leading-tight">{resultData?.detectionProbability}%</p>
@@ -188,7 +188,7 @@ export default function Results() {
       </div>
 
       {/* كارت الدكتور (يمين) - 8 أعمدة */}
-      <div className="lg:col-span-8 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col h-full min-h-[450px]">
+      <div className="lg:col-span-8 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col h-full min-h-[450px] w-full max-w-2xl lg:max-w-none mx-auto lg:mx-0">
         <h2 className="text-base font-semibold text-gray-800 mb-6">Doctor's Clinical Validation</h2>
         <textarea
           value={clinicalNotes}
@@ -196,9 +196,9 @@ export default function Results() {
           className="w-full flex-grow border border-gray-200 rounded-lg p-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none font-normal"
           placeholder="Enter clinical observations..."
         />
-        <div className="flex justify-end gap-4 mt-8">
-          <button className="px-6 py-2.5 border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors">Export as PDF</button>
-          <button className="px-6 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 shadow-md transition-all">Save & Finalize Report</button>
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-end gap-4 mt-6 w-full">
+          <button className="w-full sm:w-auto px-6 py-2.5 border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors">Export as PDF</button>
+          <button className="w-full sm:w-auto px-6 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 shadow-md transition-all">Save & Finalize Report</button>
         </div>
       </div>
     </div>
@@ -206,7 +206,7 @@ export default function Results() {
 )}
        {/* TUMOR SECTION - RESTORED LAYOUT WITH REFINED FONTS */}
 {status === "tumor" && (
-  <div className="max-w-7xl mx-auto px-12 xl:px-20 py-14 bg-[#f8fafc] min-h-screen font-['Rubik']">
+  <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-20 py-10 md:py-14 bg-[#f8fafc] min-h-screen font-['Rubik']">
     
     {/* 1. Header Section */}
     <div className="mb-12">
@@ -284,7 +284,7 @@ export default function Results() {
       </div>
 
       {/* العمود الأيمن: كارت الدكتور */}
-      <div className="lg:col-span-2 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col min-h-[450px]">
+      <div className="lg:col-span-2 bg-white p-8 rounded-xl border border-gray-200 shadow-sm flex flex-col min-h-[450px] w-full lg:mx-0">
         <h2 className="text-base font-semibold text-gray-800 mb-6">Doctor's Clinical Validation</h2>
         <textarea 
           className="w-full flex-grow border border-gray-200 rounded-lg p-4 text-sm bg-[#fafafa] outline-none resize-none text-gray-600 font-normal focus:bg-white focus:ring-2 focus:ring-blue-500" 
@@ -292,11 +292,11 @@ export default function Results() {
           value={clinicalNotes} 
           onChange={(e) => setClinicalNotes(e.target.value)} 
         />
-        <div className="flex justify-end gap-4 mt-8">
-          <button className="px-6 py-2.5 border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50">
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-end gap-4 mt-6 w-full">
+          <button className="w-full sm:w-auto px-6 py-2.5 border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50">
             Export as PDF
           </button>
-          <button className="px-6 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 shadow-md">
+          <button className="w-full sm:w-auto px-6 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 shadow-md">
             Save & Finalize Report
           </button>
         </div>

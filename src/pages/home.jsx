@@ -15,9 +15,8 @@ const Home = () => {
 
       {/* NAVBAR (ثابت) */}
       <nav className="bg-white shadow-sm py-5 sticky top-0 z-50 transition-all duration-300">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6 space-y-3 md:space-y-0">
+        <div className="container mx-auto flex items-center justify-between px-6">
 
-          {/* Logo */}
           <div className="flex items-center gap-2">
             <img
               src="/images/logo brain toumer 1.svg"
@@ -27,56 +26,69 @@ const Home = () => {
             <h1 className="text-xl font-bold text-gray-900">Brainalyze</h1>
           </div>
 
-          {/* Hamburger Button للموبايل */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-800 focus:outline-none text-2xl"
-            >
-              {isOpen ? "✖" : "☰"}
-            </button>
-          </div>
-
-          {/* Links */}
-          <ul
-            className={`flex flex-col md:flex-row md:space-x-10 text-gray-800 font-semibold text-lg transition-all duration-300 ${
-              isOpen ? "block" : "hidden"
-            } md:flex`}
-          >
+          {/* Centered links on desktop */}
+          <ul className="hidden md:flex space-x-10 text-gray-800 font-semibold text-lg mx-auto">
             <li>
-              <Link to="/" className="text-blue-700 block py-2 md:py-0">Home</Link>
+              <Link to="/" className="text-blue-700">Home</Link>
             </li>
             <li>
-              <Link to="/about" className="hover:text-blue-700 block py-2 md:py-0">About</Link>
+              <Link to="/about" className="hover:text-blue-700">About</Link>
             </li>
             <li>
-              <Link to="/diagnosis" className="hover:text-blue-700 block py-2 md:py-0">Diagnosis</Link>
+              <Link to="/diagnosis" className="hover:text-blue-700">Diagnosis</Link>
             </li>
             <li>
-              <Link to="/results" className="hover:text-blue-700 block py-2 md:py-0">Results</Link>
+              <Link to="/results" className="hover:text-blue-700">Results</Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-blue-700 block py-2 md:py-0">Contact Us</Link>
+              <Link to="/contact" className="hover:text-blue-700">Contact Us</Link>
             </li>
           </ul>
 
-          {/* Login / Sign Up */}
-          <div className="flex flex-col md:flex-row items-center md:space-x-4 mt-2 md:mt-0">
-            <Link
-              to="/login"
-              className="px-5 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium mb-2 md:mb-0"
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="px-6 py-2 text-white bg-gradient-to-r from-[#0B6CF6] to-[#4F8BFF] rounded-lg hover:opacity-90 transition font-medium shadow-md"
-            >
-              Sign Up
-            </Link>
-          </div>
+          <div className="flex items-center">
+            {/* Hamburger for mobile */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-gray-800 focus:outline-none text-2xl"
+                aria-label="Toggle menu"
+              >
+                {isOpen ? "✖" : "☰"}
+              </button>
+            </div>
 
+            {/* Desktop auth buttons (right side) */}
+            <div className="hidden md:flex items-center md:space-x-4 ml-6">
+              <Link to="/login" className="px-5 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium">Login</Link>
+              <Link to="/signup" className="px-6 py-2 text-white bg-gradient-to-r from-[#0B6CF6] to-[#4F8BFF] rounded-lg hover:opacity-90 transition font-medium shadow-md">Sign Up</Link>
+            </div>
+          </div>
         </div>
+
+        {/* Mobile menu (below navbar) */}
+        <ul className={`md:hidden flex flex-col items-center bg-white w-full space-y-2 mt-2 transition-all duration-300 ${isOpen ? 'block' : 'hidden'}`}>
+          <li>
+            <Link to="/" className="hover:text-blue-700 py-2 block">Home</Link>
+          </li>
+          <li>
+            <Link to="/about" className="hover:text-blue-700 py-2 block">About</Link>
+          </li>
+          <li>
+            <Link to="/diagnosis" className="text-blue-700 py-2 block">Diagnosis</Link>
+          </li>
+          <li>
+            <Link to="/results" className="hover:text-blue-700 py-2 block">Results</Link>
+          </li>
+          <li>
+            <Link to="/contact" className="hover:text-blue-700 py-2 block">Contact Us</Link>
+          </li>
+          <li className="w-full">
+            <div className="w-full flex justify-center items-center gap-3 px-2 py-2">
+              <Link to="/login" className="px-5 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium">Login</Link>
+              <Link to="/signup" className="px-6 py-2 text-white bg-gradient-to-r from-[#0B6CF6] to-[#4F8BFF] rounded-lg hover:opacity-90 transition font-medium shadow-md">Sign Up</Link>
+            </div>
+          </li>
+        </ul>
       </nav>
 
 
