@@ -52,7 +52,6 @@ export default function Results() {
   return (
     <div className="bg-[#F8FAFC] min-h-screen text-gray-900 flex flex-col">
 
-      {/* TEMP BUTTONS TO PREVIEW RESULTS */}
       <div className="flex flex-col md:flex-row gap-3 p-4 bg-gray-100 border mb-5">
         <button 
           onClick={() => setStatus("no_tumor")} 
