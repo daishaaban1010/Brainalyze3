@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 const ProcessingScan = () => {
@@ -13,13 +13,13 @@ const ProcessingScan = () => {
   const scanId = location.state?.scanId || 12345;
   const patientData = location.state?.patientData || {};
 
-  let isCancelled = false; // flag لمنع استدعاء API بعد الإلغاء
+  const isCancelledRef = useRef(false); // flag لمنع استدعاء API بعد الإلغاء
 
   // ================================
   // 📌 دالة لجلب النتيجة من الـ API
   // ================================
-  const fetchResultFromAPI = async () => {
-    if (isCancelled) return;
+  const fetchResultFromAPI = useCallback(async () => {
+    if (isCancelledRef.current) return;
 
     try {
       const response = await fetch(`https://your-backend-api.com/analyze/${scanId}`, {
@@ -88,7 +88,7 @@ const ProcessingScan = () => {
 
       navigate('/results', { state: { resultData: errorData, isError: true } });
     }
-  };
+  }, [scanId, fileName, patientData, navigate]);
 
   // ================================
   // 📌 Progress + Countdown
@@ -100,7 +100,7 @@ const ProcessingScan = () => {
     let elapsed = 0;
 
     const timer = setInterval(() => {
-      if (isCancelled) {
+      if (isCancelledRef.current) {
         clearInterval(timer);
         return;
       }
@@ -122,7 +122,7 @@ const ProcessingScan = () => {
   // 📌 Cancel Analysis
   // ================================
   const handleCancel = () => {
-    isCancelled = true;
+    isCancelledRef.current = true;
     setIsProcessing(false);
     setProgress(100);
     setTimeRemaining(0);

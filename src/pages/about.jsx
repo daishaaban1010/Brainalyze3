@@ -1,28 +1,12 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Cpu, Users, Lightbulb, Globe, Zap } from 'lucide-react';
+import { Mail, Phone, MapPin, Cpu, Users, Lightbulb } from 'lucide-react';
 
 const About = () => {
   
   const navigate = useNavigate();
    const [isOpen, setIsOpen] = useState(false);
-
-  const handleContactClick = () => {
-    navigate('/contact');
-  };
-
-  const handlePrivacyPolicy = () => {
-    navigate('/privacy');
-  };
-
-  const handleTermsOfService = () => {
-    navigate('/terms');
-  };
-
-  const handleSupport = () => {
-    navigate('/support');
-  };
 
   const handleGetStarted = () => {
     navigate('/login'); // تم التعديل هنا لفتح صفحة Login

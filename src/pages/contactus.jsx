@@ -86,16 +86,17 @@ const ContactUs = () => {
 
   // Handle social media clicks
   const handleSocialMediaClick = (platform) => {
-    console.log(`Clicked on ${platform}`);
-    // يمكنك إضافة روابط حقيقية هنا
     const socialLinks = {
       linkedin: 'https://linkedin.com/company/brainalyze',
       twitter: 'https://twitter.com/brainalyze',
       github: 'https://github.com/brainalyze'
     };
-    
-    // في التطبيق الحقيقي، استخدم:
-    // window.open(socialLinks[platform], '_blank');
+    const url = socialLinks[platform];
+    if (url) {
+      window.open(url, '_blank');
+    } else {
+      console.warn(`No social link for ${platform}`);
+    }
   };
 
   // Handle map click

@@ -5,7 +5,7 @@ export default function Results() {
   const location = useLocation();
   const [status, setStatus] = useState("no_tumor");
   const [resultData, setResultData] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(true);
+  
   const [isOpen, setIsOpen] = useState(false);
   const [clinicalNotes, setClinicalNotes] = useState("");
 
@@ -22,7 +22,7 @@ export default function Results() {
         setStatus("no_tumor");
       }
 
-      setIsProcessing(false);
+      
       return;
     }
 
@@ -46,7 +46,6 @@ export default function Results() {
 
     setResultData(fallbackData);
     setStatus("no_tumor");
-    setIsProcessing(false);
   }, [location.state]);
 
   return (
