@@ -84,8 +84,18 @@ const Home = () => {
           </li>
           <li className="w-full">
             <div className="w-full flex justify-center items-center gap-3 px-2 py-2">
-              <Link to="/login" className="px-5 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium">Login</Link>
-              <Link to="/signup" className="px-6 py-2 text-white bg-gradient-to-r from-[#0B6CF6] to-[#4F8BFF] rounded-lg hover:opacity-90 transition font-medium shadow-md">Sign Up</Link>
+              <Link
+                to="/login"
+                className="w-full sm:w-auto px-4 py-1.5 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition font-medium text-center"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="w-full sm:w-auto px-4 py-1.5 text-white bg-gradient-to-r from-[#0B6CF6] to-[#4F8BFF] rounded-lg hover:opacity-90 transition font-medium shadow-md text-center"
+              >
+                Sign Up
+              </Link>
             </div>
           </li>
         </ul>
