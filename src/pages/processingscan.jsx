@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 const ProcessingScan = () => {
@@ -11,7 +11,7 @@ const ProcessingScan = () => {
 
   const fileName = location.state?.fileName || 'MRI_Scan.dcm';
   const scanId = location.state?.scanId || 12345;
-  const patientData = location.state?.patientData || {};
+  const patientData = useMemo(() => location.state?.patientData || {}, [location.state?.patientData]);
 
   const isCancelledRef = useRef(false); // flag لمنع استدعاء API بعد الإلغاء
 
@@ -116,7 +116,7 @@ const ProcessingScan = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isProcessing]);
+  }, [isProcessing, fetchResultFromAPI]);
 
   // ================================
   // 📌 Cancel Analysis
